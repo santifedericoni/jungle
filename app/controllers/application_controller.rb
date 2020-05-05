@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     @enhanced_cart ||= Product.where(id: cart.keys).map {|product| { product:product, quantity: cart[product.id.to_s] } }
   end
   helper_method :enhanced_cart
-
+  
   def cart_subtotal_cents
     active_sale = Sale.highest_active
     discount = ( active_sale && 1 - active_sale.percent_off / 100.00 ) || 1
@@ -41,4 +41,13 @@ class ApplicationController < ActionController::Base
     cookies[:cart]
   end
 
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+  helper_method :current_user
+
+  def authorize
+    redirect_to '/login' unless current_user
+  end
+  
 end
