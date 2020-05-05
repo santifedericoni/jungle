@@ -4,6 +4,11 @@ class SessionsController < ApplicationController
   end
 
   def create
+    if user = User.authenticate_with_credentials(params[:email], params[:password])
+      # success logic, log them in
+    else
+      # failure, render login form
+    end
     user = User.find_by_email(params[:email])
     # If the user exists AND the password entered is correct.
     if user && user.authenticate(params[:password])

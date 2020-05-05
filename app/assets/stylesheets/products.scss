@@ -85,3 +85,24 @@ main section.products-show {
 }
 
 
+main section.admin-dashboard {
+  .admin-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    
+    .admin-info {
+      background-color: lightblue;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin: 10px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+  }
+}
