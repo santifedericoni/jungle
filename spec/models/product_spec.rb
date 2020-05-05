@@ -2,42 +2,35 @@ require 'rails_helper'
 
 RSpec.describe Product, type: :model do
   describe 'Validations' do
-    let(:category) { Category.new(name: 'Test Category') }
 
-    subject do
-      described_class.new(
-        id: 1,
-        name: 'New Product',
-        price_cents: 1000,
-        quantity: 10,
-        category: category
-      )
+    it 'should be able to create and save a new product' do
+      cat = Category.create!
+      product = Product.new(name: 'test', price: 80, quantity: 2, category: cat)
+      expect(product).to be_valid
     end
 
-    it 'is valid with all valid attributes' do
-      expect(subject).to be_valid
+    it 'should require a product to have a name' do
+      cat = Category.create!
+      product = Product.new(price: 80, quantity: 2, category: cat)
+      expect(product).not_to be_valid
     end
 
-    it 'is not valid without a name' do
-      subject.name = nil
-      expect(subject).to_not be_valid
-      expect(subject.errors.full_messages).to include("Name can't be blank")
+    it 'should require a product to have a price' do
+      cat = Category.create!
+      product = Product.new(name: 'test', quantity: 2, category: cat)
+      expect(product).not_to be_valid
     end
 
-    it 'is not valid without a price' do
-      subject.price_cents = nil
-      expect(subject).to_not be_valid
-      expect(subject.errors.full_messages).to include(
-        'Price cents is not a number',
-        'Price is not a number',
-        "Price can't be blank"
-      )
+    it 'should require a product to have a quantity' do
+      cat = Category.create!
+      product = Product.new(name: 'test', price: 80, category: cat)
+      expect(product).not_to be_valid
     end
 
-    it 'is not valid without a category' do
-      subject.category = nil
-      expect(subject).to_not be_valid
-      expect(subject.errors.full_messages).to include("Category can't be blank")
+    it 'should require a product to have a category' do
+      product = Product.new(name: 'test', price: 80, quantity: 2)
+      expect(product).not_to be_valid
     end
+
   end
 end
