@@ -28,7 +28,6 @@ class Admin::SalesController < ApplicationController
   end
 
   private
-
     def sale_params
       params.require(:sale).permit(
         :name,
