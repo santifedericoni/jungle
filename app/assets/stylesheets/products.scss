@@ -7,17 +7,6 @@ main section.categories-show {
     flex-wrap:       wrap;
     justify-content: space-around;
 
-    .soldOut{
-      position: absolute;
-      top: -10px;
-      left: 0;
-      padding: 10px;
-      background-color: rgb(202, 96, 96);
-      color: white; 
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 20px;
-    }
-
     .product {
       // flex:      1;
       max-width: 260px;
@@ -62,6 +51,18 @@ main section.categories-show {
         font-size: 0.8em;
       }
 
+      aside.soldout {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 7.5px;
+        background-color: #EB9394;
+        border-top-left-radius: 4px;
+        border-bottom-right-radius: 20px;
+        font-size: 1em;
+        color: #FDF2F2;
+      }
+
       &:hover {
 
         border-color: #999;
@@ -83,5 +84,3 @@ main section.products-show {
     }
   }
 }
-
-
